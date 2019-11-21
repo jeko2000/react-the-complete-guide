@@ -10,6 +10,8 @@ class App extends Component {
         <hi>Hi, I am a React App</hi>
         <p>I'm a person</p>
         <Person />
+        <Person />
+        <Person />
       </div>
     );
     /* return React.createElement('div', {className: 'App'},
