@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
   state = {
     persons: [
-      { name: 'Max', age: 28 },
-      { name: 'Manu', age: 29 },
-      { name: 'Stephanie', age: 26 },
-      { name: 'Agatha', age: 4}
+      { id: '10', name: 'Max', age: 28 },
+      { id: '11', name: 'Manu', age: 29 },
+      { id: '12', name: 'Stephanie', age: 26 },
+      { id: '13', name: 'Agatha', age: 4}
     ],
     otherState: 'some other value',
     showPersons: false
@@ -56,7 +55,8 @@ class App extends Component {
             return <Person
                      click={() => this.deletePersonHandler(index)}
                      name={person.name}
-                     age={person.age} />
+                     age={person.age}
+            key={person.id} />
           })}
         </div>
       );
