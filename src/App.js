@@ -8,18 +8,19 @@ class App extends Component {
     persons: [
       { name: 'Max', age: 28 },
       { name: 'Manu', age: 29 },
-      { name: 'Stephanie', age: 26 }
+      { name: 'Stephanie', age: 26 },
+      { name: 'Agatha', age: 4}
     ],
     otherState: 'some other value',
     showPersons: false
   }
 
-  switchNameHandler = (newName) => {
+  switchNameHandler = () => {
     //console.log('Was clicked');
     // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
     this.setState({
       persons: [
-        { name: newName, age: 28 },
+        { name: 'Max', age: 28 },
         { name: 'Manu', age: 29 },
         { name: 'Stephanie', age: 27 }
       ]
@@ -53,15 +54,11 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Person name={this.state.persons[0].name}
-                  age={this.state.persons[0].age}/>
-          <Person name={this.state.persons[1].name}
-                  age={this.state.persons[1].age}
-                  click={this.switchNameHandler.bind(this, 'Max!')}
-                  changed={this.nameChangedHandler}>My hobbies: Racing</Person>
-          // bind method is more efficient
-          <Person name={this.state.persons[2].name}
-                  age={this.state.persons[2].age}/>
+          {this.state.persons.map(person => {
+            return <Person
+                     name={person.name}
+                     age={person.age} />
+          })}
         </div>
       );
     }
