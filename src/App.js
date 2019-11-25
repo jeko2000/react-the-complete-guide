@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -93,20 +92,18 @@ class App extends Component {
          We wrap the entire node in StyleRoot unless we only
          need sudo-selectors from Radium
        */
-      <StyleRoot>
-        <div className="App">
-          <h1>Hi, I am a React App</h1>
-          <p className={classes.join(' ')}>This is really working!</p>
-          <button
-            style={style}
-            onClick={this.togglePersonsHandler}>Toggle Persons</button>
-          {persons}
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <h1>Hi, I am a React App</h1>
+        <p className={classes.join(' ')}>This is really working!</p>
+        <button
+          style={style}
+          onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        {persons}
+      </div>
     );
     /* return React.createElement('div', {className: 'App'},
      *                            React.createElement('h1', null, 'Hello from createElement')); */
   }
 }
 
-export default Radium(App);
+export default App;
