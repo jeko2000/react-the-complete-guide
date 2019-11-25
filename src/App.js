@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -43,6 +44,7 @@ class App extends Component {
 
   render() {
     let persons = null;
+    let btnClass = [classes.Button];
 
     if (this.state.showPersons) {
       persons = (
@@ -57,16 +59,16 @@ class App extends Component {
           })}
         </div>
       );
+      btnClass.push(classes.Red);
     }
-
-    const classes = [];
+    const assignedClasses = [];
     const length = this.state.persons.length;
 
     if (length <= 2) {
-      classes.push('red'); // classes = ['red']
+      assignedClasses.push(classes.red); // assignedClasses = ['red']
     }
     if (length <= 1) {
-      classes.push('bold'); // classes = ['red', 'bold']
+      assignedClasses.push(classes.bold); // assignedClasses = ['red', 'bold']
     }
 
     return (
@@ -74,10 +76,11 @@ class App extends Component {
          We wrap the entire node in StyleRoot unless we only
          need sudo-selectors from Radium
        */
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I am a React App</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <button className="button"
+        <p className={assignedClasses.join(' ')}>This is really working!</p>
+        <button
+          className={btnClass.join(' ')}
           alt={this.state.showPersons}
           onClick={this.togglePersonsHandler}>Toggle Persons
         </button>
