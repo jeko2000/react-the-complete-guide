@@ -17,11 +17,11 @@ const StyledDiv = styled.div`
   }
 `;
 const person = (props) => {
-  const style = {
-    '@media (min-width: 500px)': {
-      width: '450px'
-    }
-  }
+  /* const style = {
+   *   '@media (min-width: 500px)': {
+   *     width: '450px'
+   *   }
+   * } */
   /* I want the X below to be a random number  */
   return (
     //    <div className="Person" style={style}>
