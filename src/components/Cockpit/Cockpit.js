@@ -19,7 +19,7 @@ const cockpit = props => {
 
   return(
     <div className={classes.Cockpit}>
-      <h1>Hi, I am a React App</h1>
+      <h1>{props.title}</h1>
       <p className={assignedClasses.join(' ')}>This is really working!</p>
       <button
         className={btnClass}
@@ -29,5 +29,8 @@ const cockpit = props => {
     </div>
   );
 }
-
+/* One core difference between the class based and function
+ * components is the fact that function components are unable
+ * to access lifecycle hooks while class based components can.
+ */
 export default cockpit;
