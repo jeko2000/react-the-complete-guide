@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import classes from './App.css';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -20,7 +21,6 @@ class App extends Component {
     const person = {
       ...this.state.persons[personIndex]
     };
-    console.log('personIndex', personIndex);
     person.name = event.target.value;
 
     const persons = [...this.state.persons];
@@ -50,12 +50,13 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
-            return <Person
-                     click={() => this.deletePersonHandler(index)}
-                     name={person.name}
-                     age={person.age}
-                     key={person.id}
-                     changed={(event) => this.nameChangedHandler(event, person.id)} />
+            return <ErrorBoundary key={person.id}>
+              <Person
+                click={() => this.deletePersonHandler(index)}
+                name={person.name}
+                age={person.age}
+                changed={(event) => this.nameChangedHandler(event, person.id)} />
+            </ErrorBoundary>
           })}
         </div>
       );
@@ -72,10 +73,6 @@ class App extends Component {
     }
 
     return (
-      /*
-         We wrap the entire node in StyleRoot unless we only
-         need sudo-selectors from Radium
-       */
       <div className={classes.App}>
         <h1>Hi, I am a React App</h1>
         <p className={assignedClasses.join(' ')}>This is really working!</p>
