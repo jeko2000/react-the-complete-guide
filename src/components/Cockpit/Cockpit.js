@@ -29,12 +29,11 @@ const cockpit = props => {
   if (props.showPersons) {
     btnClass = classes.Red;
   }
-  const length = props.persons.length;
 
-  if (length <= 2) {
+  if (props.personsLength <= 2) {
     assignedClasses.push(classes.red); // assignedClasses = ['red']
   }
-  if (length <= 1) {
+  if (props.personsLength <= 1) {
     assignedClasses.push(classes.bold); // assignedClasses = ['red', 'bold']
   }
 
@@ -55,4 +54,4 @@ const cockpit = props => {
  * components is the fact that function components are unable
  * to access lifecycle hooks while class based components can.
  */
-export default cockpit;
+export default React.memo(cockpit);
