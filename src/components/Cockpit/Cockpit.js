@@ -8,9 +8,19 @@ const cockpit = props => {
     setTimeout(() => {
       alert('Saved data to cloud!');
     }, 1000);
+    return () => {
+      console.log('[Cockpit.js] cleanup work in useEffect');
+    }
   }, []);
   // We can pass an empty array anytime we want the effect to be used only once.
   // We can have as many useEffects as needed
+
+  useEffect(()=> {
+    console.log('[Cockpit.js] 2nd useEffect()');
+    return () => {
+      console.log('[Cockpit.js] cleanup work in 2nd useEffect');
+    }
+  });
 
   const assignedClasses = [];
   let btnClass = '';
