@@ -17,6 +17,7 @@ const cockpit = props => {
     assignedClasses.push(classes.bold); // assignedClasses = ['red', 'bold']
   }
 
+  console.log('[Cockpit.js] rendering...');
   return(
     <div className={classes.Cockpit}>
       <h1>{props.title}</h1>
