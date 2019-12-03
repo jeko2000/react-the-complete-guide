@@ -1,28 +1,29 @@
-import React, {Component} from 'react'
-import './App.css'
-import classes from './App.css'
-import Persons from '../components/Persons/Persons'
-import Cockpit from '../components/Cockpit/Cockpit'
+import React, { Component } from 'react';
+import './App.css';
+import classes from './App.css';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 
 class App extends Component {
   constructor(props) {
-    super(props)
-    console.log('[App.js] constructor')
+    super(props);
+    console.log('[App.js] constructor');
     this.state = {
       persons: [
-        {id: 'a10', name: 'Max', age: 28},
-        {id: 'a11', name: 'Manu', age: 29},
-        {id: 'a12', name: 'Stephanie', age: 26},
-        {id: 'a13', name: 'Agatha', age: 4}
+        { id: 'a10', name: 'Max', age: 28 },
+        { id: 'a11', name: 'Manu', age: 29 },
+        { id: 'a12', name: 'Stephanie', age: 26 },
+        { id: 'a13', name: 'Agatha', age: 4 },
       ],
       otherState: 'some other value',
       showPersons: false,
-      showCockpit: true
-    }
+      showCockpit: true,
+    };
   }
   static getDerivedStateFromProps(props, state) {
-    console.log('[App.js] getDerivedStateFromProps')
-    return state
+    console.log('[App.js] getDerivedStateFromProps');
+    return state;
   }
 
   /* componentWillMount() {
@@ -30,42 +31,42 @@ class App extends Component {
    * } */
 
   componentDidMount() {
-    console.log('[App.js] componentDidMount')
+    console.log('[App.js] componentDidMount');
   }
 
   shouldComponentUpdate() {
-    console.log('[App.js] shouldComponentUpdate')
-    return true
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
   }
 
   componentDidUpdate() {
-    console.log('[App.js] componentDidUpdate')
+    console.log('[App.js] componentDidUpdate');
   }
 
   nameChangedHandler = (event, id) => {
-    const personIndex = this.state.persons.findIndex(p => p.id === id)
+    const personIndex = this.state.persons.findIndex((p) => p.id === id);
     const person = {
-      ...this.state.persons[personIndex]
-    }
-    person.name = event.target.value
-    const persons = [...this.state.persons]
-    persons[personIndex] = person
-    this.setState({persons: persons})
-  }
+      ...this.state.persons[personIndex],
+    };
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+    this.setState({ persons: persons });
+  };
 
   togglePersonsHandler = () => {
-    this.setState({showPersons: !this.state.showPersons})
-  }
+    this.setState({ showPersons: !this.state.showPersons });
+  };
 
-  deletePersonHandler = personIndex => {
-    const persons = [...this.state.persons]
-    persons.splice(personIndex, 1)
-    this.setState({persons: persons})
-  }
+  deletePersonHandler = (personIndex) => {
+    const persons = [...this.state.persons];
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
+  };
 
   render() {
-    console.log('[App.js] render')
-    let persons = null
+    console.log('[App.js] render');
+    let persons = null;
     if (this.state.showPersons) {
       persons = (
         <Persons
@@ -73,13 +74,13 @@ class App extends Component {
           clicked={this.deletePersonHandler}
           changed={this.nameChangedHandler}
         />
-      )
+      );
     }
     return (
-      <div className={classes.App}>
+      <WithClass classes='classes.App'>
         <button
           onClick={() => {
-            this.setState({showCockpit: false})
+            this.setState({ showCockpit: false });
           }}>
           Remove cockpit
         </button>
@@ -92,11 +93,8 @@ class App extends Component {
           />
         ) : null}
         {persons}
-      </div>
-    )
-    /* return React.createElement('div', {className: 'App'},
-     *                            React.createElement('h1', null, 'Hello from createElement')); */
+      </WithClass>
+    );
   }
 }
-
-export default App
+export default App;
