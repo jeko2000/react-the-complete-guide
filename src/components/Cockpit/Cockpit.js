@@ -1,26 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classes from './Cockpit.css';
 
-const cockpit = props => {
+const cockpit = (props) => {
+  const toggleBtnRef = useRef(null);
+
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
     // Http request...
-    const timer = setTimeout(() => {
-      alert('Saved data to cloud!');
-    }, 1000);
+    // const timer = setTimeout(() => {
+    //   alert('Saved data to cloud!');
+    // }, 1000);
+    toggleBtnRef.current.click();
     return () => {
-      clearTimeout(timer);
+      //      clearTimeout(timer);
       console.log('[Cockpit.js] cleanup work in useEffect');
-    }
+    };
   }, []);
   // We can pass an empty array anytime we want the effect to be used only once.
   // We can have as many useEffects as needed
 
-  useEffect(()=> {
+  useEffect(() => {
     console.log('[Cockpit.js] 2nd useEffect()');
     return () => {
       console.log('[Cockpit.js] cleanup work in 2nd useEffect');
-    }
+    };
   });
 
   const assignedClasses = [];
@@ -38,18 +41,20 @@ const cockpit = props => {
   }
 
   console.log('[Cockpit.js] rendering...');
-  return(
+  return (
     <div className={classes.Cockpit}>
       <h1>{props.title}</h1>
       <p className={assignedClasses.join(' ')}>This is really working!</p>
       <button
+        ref={toggleBtnRef}
         className={btnClass}
-        alt={props.showPersons ? 'true': undefined}
-        onClick={props.clicked}>Toggle Persons
+        alt={props.showPersons ? 'true' : undefined}
+        onClick={props.clicked}>
+        Toggle Persons
       </button>
     </div>
   );
-}
+};
 /* One core difference between the class based and function
  * components is the fact that function components are unable
  * to access lifecycle hooks while class based components can.
